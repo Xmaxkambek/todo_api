@@ -16,4 +16,12 @@ class Todo {
       completed: json['completed'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'description': description,
+      'completed': completed,
+    };
+  }
 }

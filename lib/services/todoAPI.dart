@@ -28,3 +28,28 @@ Future<List<Todo>> getTodo() async {
     throw Exception('Failed to load todo');
   }
 }
+
+// Add todo task
+
+Future addTask(Todo todo) async {
+  Uri url = Uri.parse('https://motof.pythonanywhere.com/add/');
+
+  var data = jsonEncode(todo.toJson());
+
+  final response = await http.post(
+    url,
+    body: jsonEncode(
+      {
+        'title': 'Test',
+        'description': 'Test'
+        // 'completed': todo.completed,
+      },
+    ),
+  );
+
+  if (response.statusCode == 200) {
+    print('Todo added');
+  } else {
+    throw Exception('Failed to add todo');
+  }
+}
