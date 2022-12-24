@@ -49,10 +49,11 @@ class _TodoAPPState extends State<TodoAPP> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
+            setState(() {});
             addTask(Todo(
               title: 'Test',
               description: 'Test',
-              completed: false,
+              completed: true,
             ));
           },
           child: const Icon(Icons.add),

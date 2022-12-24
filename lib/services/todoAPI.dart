@@ -4,11 +4,11 @@ import 'dart:convert';
 import 'package:todo_api/models/todo.dart';
 
 Future<List<Todo>> getTodo() async {
-  String baseUrl = "https://motof.pythonanywhere.com/";
+  String baseUrl = "https://motof.pythonanywhere.com/add/";
   Uri url = Uri(
     scheme: 'https',
     host: 'motof.pythonanywhere.com',
-    path: 'get',
+    path: '/get/',
   );
   // Make a request to the API
   final response = await http.get(url);
@@ -34,14 +34,15 @@ Future<List<Todo>> getTodo() async {
 Future addTask(Todo todo) async {
   Uri url = Uri.parse('https://motof.pythonanywhere.com/add/');
 
-  var data = jsonEncode(todo.toJson());
+  // var data = jsonEncode(todo.toJson());
 
   final response = await http.post(
     url,
+ headers: { 'Content-type': 'application/json'},
     body: jsonEncode(
       {
-        'title': 'Test',
-        'description': 'Test'
+        'title': 'Ishladi ',
+        'description': 'Maxkambek'
         // 'completed': todo.completed,
       },
     ),
