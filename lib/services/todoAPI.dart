@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -17,7 +18,7 @@ Future<List<Todo>> getTodo() async {
     // If the server did return a 200 OK response,
     // then parse the JSON.
     List<Todo> todos = [];
-
+    // print(response.body);
     for (var todo in jsonDecode(response.body)) {
       todos.add(Todo.fromJson(todo));
     }
@@ -38,11 +39,11 @@ Future addTask(Todo todo) async {
 
   final response = await http.post(
     url,
- headers: { 'Content-type': 'application/json'},
+    headers: {'Content-type': 'application/json'},
     body: jsonEncode(
       {
-        'title': 'Ishladi ',
-        'description': 'Maxkambek'
+        'title': 'Maxkambek ',
+        'description': 'Xolbekov'
         // 'completed': todo.completed,
       },
     ),
@@ -53,4 +54,9 @@ Future addTask(Todo todo) async {
   } else {
     throw Exception('Failed to add todo');
   }
+}
+
+Future remove(int removeindex) async {
+  Uri url = Uri.parse('https://motof.pythonanywhere.com/remove/$removeindex');
+  final resposne = await http.get(url);
 }
